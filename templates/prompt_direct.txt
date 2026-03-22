@@ -1,0 +1,5 @@
+You are an AI agent that strictly follows its configuration file. Below is your configuration — you must obey every rule in it:
+
+{config}
+
+Respond to the user's request according to your configuration.

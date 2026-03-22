@@ -4,6 +4,55 @@
 
 This project systematically investigates how file format, execution strategy, and adaptive routing affect an LLM's ability to accurately understand and comply with agent configuration rules — through 6 experiments, ~800 API calls, and cross-model validation.
 
+### TL;DR
+
+- **Best config format**: XML-semantic v2 (100% injection resistance, +10% over Markdown)
+- **Best execution for complex tasks**: Checklist (D7: 82.5% vs 50% direct)
+- **Best default router**: `active_rules >= 5 → checklist, else direct` (90.7%, σ=0.0%)
+
+### Start Here
+
+1. **Want the conclusion?** Read [`FINAL_ARCHITECTURE.md`](FINAL_ARCHITECTURE.md)
+2. **Want the evidence?** Read [`RESEARCH_SUMMARY.md`](RESEARCH_SUMMARY.md)
+3. **Want to use it?** See [`templates/`](templates/) for ready-to-use configs and prompts
+4. **Want to reproduce?** See [Reproduce](#reproduce) below
+
+---
+
+## Quick Start
+
+**1. Write your config in XML-semantic v2** ([full template](templates/minimal_config.xml)):
+
+```xml
+<agent name="my-agent" version="1.0">
+  <priority_order>safety > honesty > helpfulness > personality</priority_order>
+
+  <rules>
+    <rule id="R1">Never recommend a technology without stating a failure mode.</rule>
+    <rule id="R2" overrides="personality.concise">
+      Switch to teaching mode for beginners.
+    </rule>
+  </rules>
+
+  <conflicts>
+    <case trigger="R1 vs R2">
+      Both apply. State failure mode AND teach why.
+    </case>
+  </conflicts>
+</agent>
+```
+
+**2. Route by complexity** ([router code](templates/router.py)):
+
+```python
+if active_rules >= 5:
+    use_checklist(config, query)  # step-by-step rule checking
+else:
+    use_direct(config, query)     # just follow the config
+```
+
+**3. Prompt templates**: [`templates/prompt_direct.txt`](templates/prompt_direct.txt) and [`templates/prompt_checklist.txt`](templates/prompt_checklist.txt)
+
 ---
 
 ## Key Findings
@@ -111,6 +160,8 @@ Tested thresholds at 3, 4, and 5. At rc5: simple tasks stay on direct (faster, e
 
 ## Cross-Model Validation
 
+**Core finding: the architecture trends are real, not model-specific variance artifacts.** Kimi k2.5's fixed T=1 inflated variance and caused misleading reversals; DeepSeek with controlled temperature confirms all three layers hold.
+
 DeepSeek-chat with controlled temperature (0.1 and 1.0), 3 repeats per test:
 
 | Strategy | T=0.1 Mean | T=0.1 σ | T=1.0 Mean | T=1.0 σ | Null% | Tokens |
@@ -129,8 +180,14 @@ DeepSeek-chat with controlled temperature (0.1 and 1.0), 3 repeats per test:
 
 ```
 ├── FINAL_ARCHITECTURE.md           # Complete design decision record
+├── RESEARCH_SUMMARY.md             # One-page research summary (paper-style)
 ├── README.md                       # This file
-├── baselines/                      # Baseline test materials (skill + identity configs)
+├── templates/                      # Ready-to-use configs and prompts
+│   ├── minimal_config.xml          # Minimal XML-semantic v2 template
+│   ├── prompt_direct.txt           # Direct execution prompt
+│   ├── prompt_checklist.txt        # Checklist execution prompt
+│   └── router.py                   # Adaptive routing implementation
+├── baselines/                      # Baseline test materials
 ├── experiments/
 │   ├── 01_file_format/             # Format comparison + ablation + compression + stress
 │   ├── 04_multirule/               # 5 execution strategies comparison
@@ -160,10 +217,15 @@ cd experiments/06_robustness && python3 run_experiment.py
 
 ## Limitations
 
-- Tested on Kimi k2.5 and DeepSeek-chat only. Generalization to other LLMs (GPT-4, Claude, Llama) not yet validated.
-- Test set covers code-review skill and engineering-advisor identity. Other agent types may behave differently.
-- `active_rules` count is currently manual. Automated rule-activation detection is future work.
-- Kimi k2.5 is locked at temperature=1, which inflated variance in Experiments 01-05.
+**Scope**: This research targets agent skill/identity configuration files. It does **not** claim that all LLM prompts should be rewritten in XML — the findings apply specifically to structured behavioral rules with priorities, conflicts, and constraints.
+
+**Models**: Tested on Kimi k2.5 and DeepSeek-chat. Generalization to GPT-4, Claude, Llama, and other architectures is not yet validated, though the cross-model consistency between two very different models is encouraging.
+
+**Rule counting**: `active_rules` is currently determined manually for each test case. Automated rule-activation detection (via parsing or LLM pre-pass) is future work and a prerequisite for production deployment.
+
+**Temperature**: Kimi k2.5 is locked at T=1, which inflated variance in Experiments 01-05. All robustness conclusions rely on DeepSeek's controlled-temperature results.
+
+**Test coverage**: 12 core test scenarios covering 1-7 simultaneous rules. More diverse agent types (customer service, data analysis, creative writing) would strengthen external validity.
 
 ---
 

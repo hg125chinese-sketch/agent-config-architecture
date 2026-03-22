@@ -1,0 +1,29 @@
+<agent name="your-agent-name" version="1.0">
+  <description>Brief description of what this agent does</description>
+
+  <!-- REQUIRED: Global priority declaration — this is the LLM's anchor for conflict resolution -->
+  <priority_order>safety > honesty > helpfulness > personality</priority_order>
+
+  <rules>
+    <rule id="R1">Your first rule here.</rule>
+    <rule id="R2">Another rule.</rule>
+    <rule id="R3" overrides="personality.concise">
+      Rules can override specific traits. Use the overrides attribute
+      to explicitly mark which trait this rule supersedes.
+    </rule>
+  </rules>
+
+  <constraints>
+    <constraint id="HC1">Hard constraint that must always hold.</constraint>
+    <constraint id="HC2" condition="some_condition">
+      Conditional constraint — only applies when condition is met.
+    </constraint>
+  </constraints>
+
+  <!-- Use natural language for conflict resolution. Do NOT use winner tags. -->
+  <conflicts>
+    <case trigger="R2 vs R3">
+      R3 takes precedence because [reason]. Apply R2's non-conflicting parts.
+    </case>
+  </conflicts>
+</agent>
