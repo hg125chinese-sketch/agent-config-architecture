@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this research, please cite it as below."
+title: "Agent Config Architecture: Representation, Execution, and Routing for LLM Rule Fidelity"
+type: software
+authors:
+  - alias: hg125chinese-sketch
+date-released: 2026-03-22
+url: "https://github.com/hg125chinese-sketch/agent-config-architecture"
+license: MIT
+keywords:
+  - llm
+  - agent
+  - configuration
+  - xml
+  - prompt-engineering
+  - rule-fidelity
+  - adaptive-routing

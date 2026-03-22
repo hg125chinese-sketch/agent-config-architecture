@@ -234,3 +234,21 @@ cd experiments/06_robustness && python3 run_experiment.py
 - **Migration validation**: Test the three-layer architecture on different agent types (customer service, data analysis)
 - **Router prototype**: Build `adaptive_rc5` as a callable routing module
 - **Automated rule counting**: Detect `active_rules` from config + user query automatically
+
+---
+
+## Citation
+
+```bibtex
+@software{agent_config_architecture_2026,
+  title     = {Agent Config Architecture: Representation, Execution, and Routing for LLM Rule Fidelity},
+  author    = {hg125chinese-sketch},
+  year      = {2026},
+  url       = {https://github.com/hg125chinese-sketch/agent-config-architecture},
+  license   = {MIT}
+}
+```
+
+## License
+
+[MIT](LICENSE)
