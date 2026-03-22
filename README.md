@@ -242,7 +242,7 @@ cd experiments/06_robustness && python3 run_experiment.py
 ```bibtex
 @software{agent_config_architecture_2026,
   title     = {Agent Config Architecture: Representation, Execution, and Routing for LLM Rule Fidelity},
-  author    = {hg125chinese-sketch},
+  author    = {Heng Gao},
   year      = {2026},
   url       = {https://github.com/hg125chinese-sketch/agent-config-architecture},
   license   = {MIT}
