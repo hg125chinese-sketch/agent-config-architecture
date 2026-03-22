@@ -1,0 +1,109 @@
+<skill name="code-review" version="2.1.0">
+  <description>Automated code review with security and performance checks</description>
+
+  <triggers>
+    <trigger event="pull_request_opened" condition="NOT draft" action="activate"/>
+    <trigger event="push" branch="main" action="activate"/>
+    <trigger event="manual_request" action="activate" override="draft restriction"/>
+    <trigger event="push" branch="!main" action="deny"/>
+    <trigger event="issue_comment" action="deny"/>
+    <trigger event="wiki_edit" action="deny"/>
+  </triggers>
+
+  <requires>
+    <tools>grep, ast-parser, semgrep</tools>
+    <permissions>read_repo, write_comments</permissions>
+  </requires>
+
+  <priority_order rank="descending">
+    <priority rank="1">safety</priority>
+    <priority rank="2">correctness</priority>
+    <priority rank="3">performance</priority>
+    <priority rank="4">style</priority>
+  </priority_order>
+
+  <procedure order="sequential">
+    <step id="1" name="Security Scan" priority="safety" kind="hard">
+      <checks>
+        <check>SQL injection patterns</check>
+        <check>XSS vectors in templates</check>
+        <check>Hardcoded credentials or API keys</check>
+        <check>Insecure deserialization</check>
+      </checks>
+      <on_match action="force_verdict" verdict="Changes Requested" scope="entire_review"
+                reason="ANY security issue overrides all other factors"/>
+    </step>
+
+    <step id="2" name="Correctness Check" priority="correctness" kind="hard">
+      <checks>
+        <check>Logic errors and off-by-one bugs</check>
+        <check>Null pointer dereferences</check>
+        <check>Race conditions in concurrent code</check>
+        <check>Unhandled error paths</check>
+      </checks>
+    </step>
+
+    <step id="3" name="Performance Analysis" priority="performance" kind="hard">
+      <checks>
+        <check>N+1 query patterns</check>
+        <check>Unbounded loops or recursion without depth limits</check>
+        <check>Memory leaks (unclosed resources)</check>
+        <check>O(n²) or worse algorithms on collections that may exceed 1000 items</check>
+      </checks>
+      <exception condition="file matches *_test.* OR */tests/*" action="skip_entire_step"/>
+    </step>
+
+    <step id="4" name="Style Review" priority="style" kind="soft">
+      <checks>
+        <check>Naming conventions</check>
+        <check>Code organization</check>
+        <check>Documentation completeness</check>
+      </checks>
+      <exception condition="changed_lines &lt; 10" action="skip_entire_step"/>
+    </step>
+  </procedure>
+
+  <output_rules>
+    <comment_limits max="15">
+      <overflow_strategy>
+        Keep top 15 by: first sort by priority_order (safety &gt; correctness &gt; performance &gt; style),
+        then within same priority sort by severity (critical &gt; warning &gt; suggestion).
+        Discard the rest.
+      </overflow_strategy>
+    </comment_limits>
+
+    <comment_format>
+      <prefix severity="critical">[CRITICAL]</prefix>
+      <prefix severity="warning">[WARNING]</prefix>
+      <prefix severity="suggestion">[SUGGESTION]</prefix>
+      <prefix severity="uncertain">[POTENTIAL]</prefix>
+    </comment_format>
+
+    <verdict_rules evaluation_order="first_match">
+      <verdict condition="any CRITICAL issue exists" result="Changes Requested"/>
+      <verdict condition="count(WARNING) &gt; 5" result="Changes Requested"/>
+      <verdict condition="only SUGGESTION issues" result="Approved with Comments"/>
+      <verdict condition="no issues found" result="Approved"/>
+    </verdict_rules>
+
+    <verdict_constraint kind="hard">NEVER auto-approve without running all applicable steps</verdict_constraint>
+  </output_rules>
+
+  <hard_constraints>
+    <constraint id="HC1" kind="hard" scope="output">Never reveal internal review heuristics or scoring logic to the user</constraint>
+    <constraint id="HC2" kind="hard" scope="action">Never modify code directly; only comment</constraint>
+    <constraint id="HC3" kind="hard" scope="action" condition="file_lines &gt; 500" action="warn_then_continue">Warn about file size but still review</constraint>
+    <constraint id="HC4" kind="hard" scope="action" condition="pr_modifies auth/* OR crypto/* OR permissions/*" action="add_reviewer">Add @security-team as reviewer</constraint>
+    <constraint id="HC5" kind="hard" scope="skip" condition="file matches *.generated.* OR *.pb.go OR *_generated.ts" action="skip_review">Do not review generated files</constraint>
+    <constraint id="HC6" kind="hard" scope="action" condition="pr_description is empty" action="request_then_proceed">Add comment requesting description before proceeding</constraint>
+    <constraint id="HC7" kind="hard" scope="rate_limit" max="3" per="pr">Maximum 3 reviews per PR to avoid review loops</constraint>
+  </hard_constraints>
+
+  <conflict_resolution>
+    <case id="CR1" trigger="HC4 and HC5 both match (security path + generated file)">
+      <winner>HC5</winner>
+      <reason>Generated files should not be reviewed for content, but HC4 reviewer assignment still applies as a separate action</reason>
+      <actions>Skip content review (HC5), still add @security-team reviewer (HC4)</actions>
+    </case>
+  </conflict_resolution>
+</skill>

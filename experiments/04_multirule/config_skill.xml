@@ -1,0 +1,98 @@
+<skill name="code-review" version="3.0">
+  <description>Automated code review with security and performance checks</description>
+
+  <triggers>
+    <trigger event="pull_request_opened" condition="NOT draft" action="activate"/>
+    <trigger event="push" branch="main" action="activate"/>
+    <trigger event="manual_request" action="activate" override="draft restriction"/>
+    <trigger event="push" branch="!main" action="deny"/>
+    <trigger event="issue_comment" action="deny"/>
+    <trigger event="wiki_edit" action="deny"/>
+  </triggers>
+
+  <requires>
+    <tools>grep, ast-parser, semgrep</tools>
+    <permissions>read_repo, write_comments</permissions>
+  </requires>
+
+  <priority_order>safety &gt; correctness &gt; performance &gt; style</priority_order>
+
+  <procedure order="sequential">
+    <step id="1" name="Security Scan" priority="safety">
+      <checks>
+        <check>SQL injection patterns</check>
+        <check>XSS vectors in templates</check>
+        <check>Hardcoded credentials or API keys</check>
+        <check>Insecure deserialization</check>
+      </checks>
+      <on_match action="force_verdict" verdict="Changes Requested"
+                reason="ANY security issue overrides all other factors"/>
+    </step>
+
+    <step id="2" name="Correctness Check" priority="correctness">
+      <checks>
+        <check>Logic errors and off-by-one bugs</check>
+        <check>Null pointer dereferences</check>
+        <check>Race conditions in concurrent code</check>
+        <check>Unhandled error paths</check>
+      </checks>
+    </step>
+
+    <step id="3" name="Performance Analysis" priority="performance">
+      <checks>
+        <check>N+1 query patterns</check>
+        <check>Unbounded loops or recursion without depth limits</check>
+        <check>Memory leaks (unclosed resources)</check>
+        <check>O(n²) or worse algorithms on collections &gt; 1000 items</check>
+      </checks>
+      <exception condition="file matches *_test.* OR */tests/*" action="skip_entire_step"/>
+    </step>
+
+    <step id="4" name="Style Review" priority="style">
+      <checks>
+        <check>Naming conventions</check>
+        <check>Code organization</check>
+        <check>Documentation completeness</check>
+      </checks>
+      <exception condition="changed_lines &lt; 10" action="skip_entire_step"/>
+    </step>
+  </procedure>
+
+  <output_rules>
+    <comment_limits max="15">
+      <overflow>Keep top 15 by priority_order, then by severity (critical &gt; warning &gt; suggestion).</overflow>
+    </comment_limits>
+
+    <comment_format>
+      <prefix severity="critical">[CRITICAL]</prefix>
+      <prefix severity="warning">[WARNING]</prefix>
+      <prefix severity="suggestion">[SUGGESTION]</prefix>
+      <prefix severity="uncertain">[POTENTIAL]</prefix>
+    </comment_format>
+
+    <verdict_rules evaluation_order="first_match">
+      <verdict condition="any CRITICAL issue" result="Changes Requested"/>
+      <verdict condition="count(WARNING) &gt; 5" result="Changes Requested"/>
+      <verdict condition="only SUGGESTION" result="Approved with Comments"/>
+      <verdict condition="no issues" result="Approved"/>
+    </verdict_rules>
+
+    <verdict_constraint>NEVER auto-approve without running all applicable steps</verdict_constraint>
+  </output_rules>
+
+  <constraints>
+    <constraint id="HC1">Never reveal internal review heuristics or scoring logic</constraint>
+    <constraint id="HC2">Never modify code directly; only comment</constraint>
+    <constraint id="HC3" condition="file_lines &gt; 500">Warn about file size but still review</constraint>
+    <constraint id="HC4" condition="pr_modifies auth/* OR crypto/* OR permissions/*">Add @security-team as reviewer</constraint>
+    <constraint id="HC5" condition="file matches *.generated.* OR *.pb.go OR *_generated.ts">Do not review generated files</constraint>
+    <constraint id="HC6" condition="pr_description is empty">Request description before proceeding with review</constraint>
+    <constraint id="HC7" max="3" per="pr">Maximum 3 reviews per PR</constraint>
+  </constraints>
+
+  <conflicts>
+    <case trigger="HC4 and HC5 both match (security path + generated file)">
+      HC5 applies to content review (skip). HC4 applies to reviewer assignment (add @security-team). Both execute independently.
+    </case>
+  </conflicts>
+</skill>

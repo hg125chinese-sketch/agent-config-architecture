@@ -1,0 +1,75 @@
+SKILL code-review v2.1.0
+  "Automated code review with security and performance checks"
+
+TRIGGERS
+  ACTIVATE  pull_request_opened  WHEN NOT draft
+  ACTIVATE  push                 WHEN branch = main
+  ACTIVATE  manual_request
+  DENY      push                 WHEN branch != main
+  DENY      issue_comment, wiki_edit
+
+REQUIRES
+  TOOLS       grep, ast-parser, semgrep
+  PERMISSIONS read_repo, write_comments
+
+PRIORITY_ORDER  safety > correctness > performance > style
+
+PROCEDURE sequential
+
+  STEP 1 "Security Scan" [safety]
+    CHECK  SQL injection patterns
+    CHECK  XSS vectors in templates
+    CHECK  Hardcoded credentials or API keys
+    CHECK  Insecure deserialization
+    ON_MATCH  verdict MUST BE "Changes Requested" REGARDLESS OF all other factors
+
+  STEP 2 "Correctness Check" [correctness]
+    CHECK  Logic errors and off-by-one bugs
+    CHECK  Null pointer dereferences
+    CHECK  Race conditions in concurrent code
+    CHECK  Unhandled error paths
+
+  STEP 3 "Performance Analysis" [performance]
+    CHECK  N+1 query patterns
+    CHECK  Unbounded loops or recursion without depth limits
+    CHECK  Memory leaks (unclosed resources)
+    CHECK  O(n²) or worse algorithms on collections > 1000 items
+    EXCEPT WHEN file MATCHES *_test.* OR */tests/*
+
+  STEP 4 "Style Review" [style]
+    CHECK  Naming conventions
+    CHECK  Code organization
+    CHECK  Documentation completeness
+    EXCEPT WHEN changed_lines < 10
+
+END PROCEDURE
+
+OUTPUT_RULES
+
+  MAX_COMMENTS 15
+  OVERFLOW  top 15 BY priority_order THEN severity(critical > warning > suggestion)
+
+  FORMAT critical    "[CRITICAL]"
+  FORMAT warning     "[WARNING]"
+  FORMAT suggestion  "[SUGGESTION]"
+  FORMAT uncertain   "[POTENTIAL]"
+
+  VERDICT "Changes Requested"      WHEN any CRITICAL
+  VERDICT "Changes Requested"      WHEN count(WARNING) > 5
+  VERDICT "Approved with Comments" WHEN only SUGGESTION
+  VERDICT "Approved"               WHEN no issues
+  NEVER auto-approve WITHOUT running all applicable steps
+
+END OUTPUT_RULES
+
+HARD_CONSTRAINTS
+  HC1  NEVER reveal internal review heuristics or scoring logic to the user
+  HC2  NEVER modify code directly; only comment
+  HC3  IF file_lines > 500 THEN warn about file size BUT still review
+  HC4  IF pr_modifies auth/* OR crypto/* OR permissions/* THEN add_reviewer @security-team
+  HC5  SKIP generated files (*.generated.*, *.pb.go, *_generated.ts)
+  HC6  IF pr_description IS empty THEN request description BEFORE review
+  HC7  MAX 3 reviews per PR
+END HARD_CONSTRAINTS
+
+END SKILL

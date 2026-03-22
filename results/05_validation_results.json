@@ -1,0 +1,140 @@
+{
+  "direct": [
+    {
+      "id": "V_S1",
+      "rules": 2,
+      "hits": 1,
+      "total": 1,
+      "pct": 100.0
+    },
+    {
+      "id": "V_M3",
+      "rules": 3,
+      "hits": 3,
+      "total": 3,
+      "pct": 100.0
+    },
+    {
+      "id": "V_M5a",
+      "rules": 5,
+      "hits": 5,
+      "total": 5,
+      "pct": 100.0
+    },
+    {
+      "id": "V_M5b",
+      "rules": 5,
+      "hits": 3,
+      "total": 5,
+      "pct": 60.0
+    },
+    {
+      "id": "V_M7a",
+      "rules": 7,
+      "hits": 7,
+      "total": 7,
+      "pct": 100.0
+    },
+    {
+      "id": "V_M7b",
+      "rules": 7,
+      "hits": 4,
+      "total": 7,
+      "pct": 57.14285714285714
+    }
+  ],
+  "checklist": [
+    {
+      "id": "V_S1",
+      "rules": 2,
+      "hits": 1,
+      "total": 1,
+      "pct": 100.0
+    },
+    {
+      "id": "V_M3",
+      "rules": 3,
+      "hits": 0,
+      "total": 3,
+      "pct": 0.0
+    },
+    {
+      "id": "V_M5a",
+      "rules": 5,
+      "hits": 5,
+      "total": 5,
+      "pct": 100.0
+    },
+    {
+      "id": "V_M5b",
+      "rules": 5,
+      "hits": 3,
+      "total": 5,
+      "pct": 60.0
+    },
+    {
+      "id": "V_M7a",
+      "rules": 7,
+      "hits": 6,
+      "total": 7,
+      "pct": 85.71428571428571
+    },
+    {
+      "id": "V_M7b",
+      "rules": 7,
+      "hits": 3,
+      "total": 7,
+      "pct": 42.857142857142854
+    }
+  ],
+  "rc5_adaptive": [
+    {
+      "id": "V_S1",
+      "rules": 2,
+      "hits": 1,
+      "total": 1,
+      "pct": 100.0,
+      "routed": "direct"
+    },
+    {
+      "id": "V_M3",
+      "rules": 3,
+      "hits": 3,
+      "total": 3,
+      "pct": 100.0,
+      "routed": "direct"
+    },
+    {
+      "id": "V_M5a",
+      "rules": 5,
+      "hits": 5,
+      "total": 5,
+      "pct": 100.0,
+      "routed": "checklist"
+    },
+    {
+      "id": "V_M5b",
+      "rules": 5,
+      "hits": 3,
+      "total": 5,
+      "pct": 60.0,
+      "routed": "checklist"
+    },
+    {
+      "id": "V_M7a",
+      "rules": 7,
+      "hits": 6,
+      "total": 7,
+      "pct": 85.71428571428571,
+      "routed": "checklist"
+    },
+    {
+      "id": "V_M7b",
+      "rules": 7,
+      "hits": 3,
+      "total": 7,
+      "pct": 42.857142857142854,
+      "routed": "checklist"
+    }
+  ]
+}

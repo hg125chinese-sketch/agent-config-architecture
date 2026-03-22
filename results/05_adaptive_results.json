@@ -1,0 +1,2418 @@
+{
+  "always_direct": {
+    "overall_pct": 48.0,
+    "total_hits": 24,
+    "total_checks": 50,
+    "avg_tokens": 2872,
+    "avg_answer_len": 851,
+    "pct_per_1k_tokens": 16.7,
+    "by_difficulty": {
+      "1": {
+        "pct": 100.0,
+        "hits": 1,
+        "total": 1
+      },
+      "2": {
+        "pct": 100.0,
+        "hits": 4,
+        "total": 4
+      },
+      "3": {
+        "pct": 83.3,
+        "hits": 5,
+        "total": 6
+      },
+      "4": {
+        "pct": 42.9,
+        "hits": 3,
+        "total": 7
+      },
+      "5": {
+        "pct": 50.0,
+        "hits": 7,
+        "total": 14
+      },
+      "7": {
+        "pct": 22.2,
+        "hits": 4,
+        "total": 18
+      }
+    },
+    "routing_log": [
+      {
+        "id": "S1",
+        "active_rules": 1,
+        "routed_to": "direct",
+        "hits": 1,
+        "total": 1
+      },
+      {
+        "id": "S2",
+        "active_rules": 2,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "S3",
+        "active_rules": 2,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "M3_1",
+        "active_rules": 3,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 3
+      },
+      {
+        "id": "M3_2",
+        "active_rules": 3,
+        "routed_to": "direct",
+        "hits": 3,
+        "total": 3
+      },
+      {
+        "id": "M4_1",
+        "active_rules": 4,
+        "routed_to": "direct",
+        "hits": 0,
+        "total": 3
+      },
+      {
+        "id": "M4_2",
+        "active_rules": 4,
+        "routed_to": "direct",
+        "hits": 3,
+        "total": 4
+      },
+      {
+        "id": "M5_1",
+        "active_rules": 5,
+        "routed_to": "direct",
+        "hits": 5,
+        "total": 5
+      },
+      {
+        "id": "M5_2",
+        "active_rules": 5,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 5
+      },
+      {
+        "id": "M7_1",
+        "active_rules": 7,
+        "routed_to": "direct",
+        "hits": 0,
+        "total": 7
+      },
+      {
+        "id": "M7_2",
+        "active_rules": 7,
+        "routed_to": "direct",
+        "hits": 4,
+        "total": 7
+      },
+      {
+        "id": "M5_N",
+        "active_rules": 5,
+        "routed_to": "direct",
+        "hits": 0,
+        "total": 4
+      },
+      {
+        "id": "M7_N",
+        "active_rules": 7,
+        "routed_to": "direct",
+        "hits": 0,
+        "total": 4
+      }
+    ],
+    "tests": [
+      {
+        "id": "S1",
+        "difficulty": 1,
+        "strategy_used": "direct",
+        "hits": 1,
+        "total": 1,
+        "details": {
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "S2",
+        "difficulty": 2,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "R8 需要确认": true,
+          "不能因为用户说确定就执行": true
+        }
+      },
+      {
+        "id": "S3",
+        "difficulty": 2,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "style 跳过 (<10行)": true,
+          "verdict Approved": true
+        }
+      },
+      {
+        "id": "M3_1",
+        "difficulty": 3,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 3,
+        "details": {
+          "R7 教学模式触发": false,
+          "R6 production 99.9%": true,
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "M3_2",
+        "difficulty": 3,
+        "strategy_used": "direct",
+        "hits": 3,
+        "total": 3,
+        "details": {
+          "HC4 安全团队": true,
+          "HC5 跳过 generated": true,
+          "HC6 请求描述": true
+        }
+      },
+      {
+        "id": "M4_1",
+        "difficulty": 4,
+        "strategy_used": "direct",
+        "hits": 0,
+        "total": 3,
+        "details": {
+          "R7 教学覆盖 concise": false,
+          "R1 说 failure mode": false,
+          "不能只简短回答": false
+        }
+      },
+      {
+        "id": "M4_2",
+        "difficulty": 4,
+        "strategy_used": "direct",
+        "hits": 3,
+        "total": 4,
+        "details": {
+          "file1: generated 跳过": true,
+          "file2: performance warning": true,
+          "file2: style 可审(≥10行)": false,
+          "verdict": true
+        }
+      },
+      {
+        "id": "M5_1",
+        "difficulty": 5,
+        "strategy_used": "direct",
+        "hits": 5,
+        "total": 5,
+        "details": {
+          "HC4 安全团队": true,
+          "HC3 文件大小警告": true,
+          "HC6 请求描述": true,
+          "Changes Requested": true,
+          "CRITICAL 标注": true
+        }
+      },
+      {
+        "id": "M5_2",
+        "difficulty": 5,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 5,
+        "details": {
+          "R7 教学模式": false,
+          "R6 production": true,
+          "R1 failure mode": false,
+          "R3 代码可能超 30 行": false,
+          "C3 反对一次": true
+        }
+      },
+      {
+        "id": "M7_1",
+        "difficulty": 7,
+        "strategy_used": "direct",
+        "hits": 0,
+        "total": 7,
+        "details": {
+          "HC4 安全团队": false,
+          "HC3 文件 >500": false,
+          "HC6 请求描述": false,
+          "Changes Requested": false,
+          "评论数 ≤ 15": false,
+          "优先级排序": false,
+          "第 3 次可执行": false
+        }
+      },
+      {
+        "id": "M7_2",
+        "difficulty": 7,
+        "strategy_used": "direct",
+        "hits": 4,
+        "total": 7,
+        "details": {
+          "R7 教学模式覆盖 concise": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码超 30 行要先问": true,
+          "R5 vs R3 → R3 赢": false,
+          "C3 反对一次": false,
+          "不扩展范围 R4": false
+        }
+      },
+      {
+        "id": "M5_N",
+        "difficulty": 5,
+        "strategy_used": "direct",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "HC4 安全团队": false,
+          "HC3 文件 >500": false,
+          "HC6 请求描述": false,
+          "Changes Requested": false
+        }
+      },
+      {
+        "id": "M7_N",
+        "difficulty": 7,
+        "strategy_used": "direct",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "R7 教学模式": false,
+          "R6 production": false,
+          "R1 failure mode": false,
+          "R3 先问": false
+        }
+      }
+    ]
+  },
+  "always_checklist": {
+    "overall_pct": 60.0,
+    "total_hits": 30,
+    "total_checks": 50,
+    "avg_tokens": 3529,
+    "avg_answer_len": 1354,
+    "pct_per_1k_tokens": 17.0,
+    "by_difficulty": {
+      "1": {
+        "pct": 100.0,
+        "hits": 1,
+        "total": 1
+      },
+      "2": {
+        "pct": 100.0,
+        "hits": 4,
+        "total": 4
+      },
+      "3": {
+        "pct": 50.0,
+        "hits": 3,
+        "total": 6
+      },
+      "4": {
+        "pct": 28.6,
+        "hits": 2,
+        "total": 7
+      },
+      "5": {
+        "pct": 64.3,
+        "hits": 9,
+        "total": 14
+      },
+      "7": {
+        "pct": 61.1,
+        "hits": 11,
+        "total": 18
+      }
+    },
+    "routing_log": [
+      {
+        "id": "S1",
+        "active_rules": 1,
+        "routed_to": "checklist",
+        "hits": 1,
+        "total": 1
+      },
+      {
+        "id": "S2",
+        "active_rules": 2,
+        "routed_to": "checklist",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "S3",
+        "active_rules": 2,
+        "routed_to": "checklist",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "M3_1",
+        "active_rules": 3,
+        "routed_to": "checklist",
+        "hits": 3,
+        "total": 3
+      },
+      {
+        "id": "M3_2",
+        "active_rules": 3,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 3
+      },
+      {
+        "id": "M4_1",
+        "active_rules": 4,
+        "routed_to": "checklist",
+        "hits": 2,
+        "total": 3
+      },
+      {
+        "id": "M4_2",
+        "active_rules": 4,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 4
+      },
+      {
+        "id": "M5_1",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 5,
+        "total": 5
+      },
+      {
+        "id": "M5_2",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 5
+      },
+      {
+        "id": "M7_1",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 7
+      },
+      {
+        "id": "M7_2",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 7
+      },
+      {
+        "id": "M5_N",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 4
+      },
+      {
+        "id": "M7_N",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 3,
+        "total": 4
+      }
+    ],
+    "tests": [
+      {
+        "id": "S1",
+        "difficulty": 1,
+        "strategy_used": "checklist",
+        "hits": 1,
+        "total": 1,
+        "details": {
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "S2",
+        "difficulty": 2,
+        "strategy_used": "checklist",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "R8 需要确认": true,
+          "不能因为用户说确定就执行": true
+        }
+      },
+      {
+        "id": "S3",
+        "difficulty": 2,
+        "strategy_used": "checklist",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "style 跳过 (<10行)": true,
+          "verdict Approved": true
+        }
+      },
+      {
+        "id": "M3_1",
+        "difficulty": 3,
+        "strategy_used": "checklist",
+        "hits": 3,
+        "total": 3,
+        "details": {
+          "R7 教学模式触发": true,
+          "R6 production 99.9%": true,
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "M3_2",
+        "difficulty": 3,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 3,
+        "details": {
+          "HC4 安全团队": false,
+          "HC5 跳过 generated": false,
+          "HC6 请求描述": false
+        }
+      },
+      {
+        "id": "M4_1",
+        "difficulty": 4,
+        "strategy_used": "checklist",
+        "hits": 2,
+        "total": 3,
+        "details": {
+          "R7 教学覆盖 concise": true,
+          "R1 说 failure mode": false,
+          "不能只简短回答": true
+        }
+      },
+      {
+        "id": "M4_2",
+        "difficulty": 4,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "file1: generated 跳过": false,
+          "file2: performance warning": false,
+          "file2: style 可审(≥10行)": false,
+          "verdict": false
+        }
+      },
+      {
+        "id": "M5_1",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 5,
+        "total": 5,
+        "details": {
+          "HC4 安全团队": true,
+          "HC3 文件大小警告": true,
+          "HC6 请求描述": true,
+          "Changes Requested": true,
+          "CRITICAL 标注": true
+        }
+      },
+      {
+        "id": "M5_2",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 5,
+        "details": {
+          "R7 教学模式": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码可能超 30 行": false,
+          "C3 反对一次": true
+        }
+      },
+      {
+        "id": "M7_1",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 7,
+        "details": {
+          "HC4 安全团队": true,
+          "HC3 文件 >500": true,
+          "HC6 请求描述": true,
+          "Changes Requested": false,
+          "评论数 ≤ 15": false,
+          "优先级排序": true,
+          "第 3 次可执行": false
+        }
+      },
+      {
+        "id": "M7_2",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 7,
+        "details": {
+          "R7 教学模式覆盖 concise": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码超 30 行要先问": true,
+          "R5 vs R3 → R3 赢": false,
+          "C3 反对一次": false,
+          "不扩展范围 R4": false
+        }
+      },
+      {
+        "id": "M5_N",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "HC4 安全团队": false,
+          "HC3 文件 >500": false,
+          "HC6 请求描述": false,
+          "Changes Requested": false
+        }
+      },
+      {
+        "id": "M7_N",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 3,
+        "total": 4,
+        "details": {
+          "R7 教学模式": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 先问": false
+        }
+      }
+    ]
+  },
+  "adaptive_rc3": {
+    "overall_pct": 60.0,
+    "total_hits": 30,
+    "total_checks": 50,
+    "avg_tokens": 3368,
+    "avg_answer_len": 1125,
+    "pct_per_1k_tokens": 17.8,
+    "by_difficulty": {
+      "1": {
+        "pct": 100.0,
+        "hits": 1,
+        "total": 1
+      },
+      "2": {
+        "pct": 100.0,
+        "hits": 4,
+        "total": 4
+      },
+      "3": {
+        "pct": 50.0,
+        "hits": 3,
+        "total": 6
+      },
+      "4": {
+        "pct": 28.6,
+        "hits": 2,
+        "total": 7
+      },
+      "5": {
+        "pct": 64.3,
+        "hits": 9,
+        "total": 14
+      },
+      "7": {
+        "pct": 61.1,
+        "hits": 11,
+        "total": 18
+      }
+    },
+    "routing_log": [
+      {
+        "id": "S1",
+        "active_rules": 1,
+        "routed_to": "direct",
+        "hits": 1,
+        "total": 1
+      },
+      {
+        "id": "S2",
+        "active_rules": 2,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "S3",
+        "active_rules": 2,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "M3_1",
+        "active_rules": 3,
+        "routed_to": "checklist",
+        "hits": 3,
+        "total": 3
+      },
+      {
+        "id": "M3_2",
+        "active_rules": 3,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 3
+      },
+      {
+        "id": "M4_1",
+        "active_rules": 4,
+        "routed_to": "checklist",
+        "hits": 2,
+        "total": 3
+      },
+      {
+        "id": "M4_2",
+        "active_rules": 4,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 4
+      },
+      {
+        "id": "M5_1",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 5,
+        "total": 5
+      },
+      {
+        "id": "M5_2",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 5
+      },
+      {
+        "id": "M7_1",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 7
+      },
+      {
+        "id": "M7_2",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 7
+      },
+      {
+        "id": "M5_N",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 4
+      },
+      {
+        "id": "M7_N",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 3,
+        "total": 4
+      }
+    ],
+    "tests": [
+      {
+        "id": "S1",
+        "difficulty": 1,
+        "strategy_used": "direct",
+        "hits": 1,
+        "total": 1,
+        "details": {
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "S2",
+        "difficulty": 2,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "R8 需要确认": true,
+          "不能因为用户说确定就执行": true
+        }
+      },
+      {
+        "id": "S3",
+        "difficulty": 2,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "style 跳过 (<10行)": true,
+          "verdict Approved": true
+        }
+      },
+      {
+        "id": "M3_1",
+        "difficulty": 3,
+        "strategy_used": "checklist",
+        "hits": 3,
+        "total": 3,
+        "details": {
+          "R7 教学模式触发": true,
+          "R6 production 99.9%": true,
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "M3_2",
+        "difficulty": 3,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 3,
+        "details": {
+          "HC4 安全团队": false,
+          "HC5 跳过 generated": false,
+          "HC6 请求描述": false
+        }
+      },
+      {
+        "id": "M4_1",
+        "difficulty": 4,
+        "strategy_used": "checklist",
+        "hits": 2,
+        "total": 3,
+        "details": {
+          "R7 教学覆盖 concise": true,
+          "R1 说 failure mode": false,
+          "不能只简短回答": true
+        }
+      },
+      {
+        "id": "M4_2",
+        "difficulty": 4,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "file1: generated 跳过": false,
+          "file2: performance warning": false,
+          "file2: style 可审(≥10行)": false,
+          "verdict": false
+        }
+      },
+      {
+        "id": "M5_1",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 5,
+        "total": 5,
+        "details": {
+          "HC4 安全团队": true,
+          "HC3 文件大小警告": true,
+          "HC6 请求描述": true,
+          "Changes Requested": true,
+          "CRITICAL 标注": true
+        }
+      },
+      {
+        "id": "M5_2",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 5,
+        "details": {
+          "R7 教学模式": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码可能超 30 行": false,
+          "C3 反对一次": true
+        }
+      },
+      {
+        "id": "M7_1",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 7,
+        "details": {
+          "HC4 安全团队": true,
+          "HC3 文件 >500": true,
+          "HC6 请求描述": true,
+          "Changes Requested": false,
+          "评论数 ≤ 15": false,
+          "优先级排序": true,
+          "第 3 次可执行": false
+        }
+      },
+      {
+        "id": "M7_2",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 7,
+        "details": {
+          "R7 教学模式覆盖 concise": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码超 30 行要先问": true,
+          "R5 vs R3 → R3 赢": false,
+          "C3 反对一次": false,
+          "不扩展范围 R4": false
+        }
+      },
+      {
+        "id": "M5_N",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "HC4 安全团队": false,
+          "HC3 文件 >500": false,
+          "HC6 请求描述": false,
+          "Changes Requested": false
+        }
+      },
+      {
+        "id": "M7_N",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 3,
+        "total": 4,
+        "details": {
+          "R7 教学模式": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 先问": false
+        }
+      }
+    ]
+  },
+  "adaptive_rc4": {
+    "overall_pct": 64.0,
+    "total_hits": 32,
+    "total_checks": 50,
+    "avg_tokens": 3267,
+    "avg_answer_len": 1133,
+    "pct_per_1k_tokens": 19.6,
+    "by_difficulty": {
+      "1": {
+        "pct": 100.0,
+        "hits": 1,
+        "total": 1
+      },
+      "2": {
+        "pct": 100.0,
+        "hits": 4,
+        "total": 4
+      },
+      "3": {
+        "pct": 83.3,
+        "hits": 5,
+        "total": 6
+      },
+      "4": {
+        "pct": 28.6,
+        "hits": 2,
+        "total": 7
+      },
+      "5": {
+        "pct": 64.3,
+        "hits": 9,
+        "total": 14
+      },
+      "7": {
+        "pct": 61.1,
+        "hits": 11,
+        "total": 18
+      }
+    },
+    "routing_log": [
+      {
+        "id": "S1",
+        "active_rules": 1,
+        "routed_to": "direct",
+        "hits": 1,
+        "total": 1
+      },
+      {
+        "id": "S2",
+        "active_rules": 2,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "S3",
+        "active_rules": 2,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "M3_1",
+        "active_rules": 3,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 3
+      },
+      {
+        "id": "M3_2",
+        "active_rules": 3,
+        "routed_to": "direct",
+        "hits": 3,
+        "total": 3
+      },
+      {
+        "id": "M4_1",
+        "active_rules": 4,
+        "routed_to": "checklist",
+        "hits": 2,
+        "total": 3
+      },
+      {
+        "id": "M4_2",
+        "active_rules": 4,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 4
+      },
+      {
+        "id": "M5_1",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 5,
+        "total": 5
+      },
+      {
+        "id": "M5_2",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 5
+      },
+      {
+        "id": "M7_1",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 7
+      },
+      {
+        "id": "M7_2",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 7
+      },
+      {
+        "id": "M5_N",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 4
+      },
+      {
+        "id": "M7_N",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 3,
+        "total": 4
+      }
+    ],
+    "tests": [
+      {
+        "id": "S1",
+        "difficulty": 1,
+        "strategy_used": "direct",
+        "hits": 1,
+        "total": 1,
+        "details": {
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "S2",
+        "difficulty": 2,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "R8 需要确认": true,
+          "不能因为用户说确定就执行": true
+        }
+      },
+      {
+        "id": "S3",
+        "difficulty": 2,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "style 跳过 (<10行)": true,
+          "verdict Approved": true
+        }
+      },
+      {
+        "id": "M3_1",
+        "difficulty": 3,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 3,
+        "details": {
+          "R7 教学模式触发": false,
+          "R6 production 99.9%": true,
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "M3_2",
+        "difficulty": 3,
+        "strategy_used": "direct",
+        "hits": 3,
+        "total": 3,
+        "details": {
+          "HC4 安全团队": true,
+          "HC5 跳过 generated": true,
+          "HC6 请求描述": true
+        }
+      },
+      {
+        "id": "M4_1",
+        "difficulty": 4,
+        "strategy_used": "checklist",
+        "hits": 2,
+        "total": 3,
+        "details": {
+          "R7 教学覆盖 concise": true,
+          "R1 说 failure mode": false,
+          "不能只简短回答": true
+        }
+      },
+      {
+        "id": "M4_2",
+        "difficulty": 4,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "file1: generated 跳过": false,
+          "file2: performance warning": false,
+          "file2: style 可审(≥10行)": false,
+          "verdict": false
+        }
+      },
+      {
+        "id": "M5_1",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 5,
+        "total": 5,
+        "details": {
+          "HC4 安全团队": true,
+          "HC3 文件大小警告": true,
+          "HC6 请求描述": true,
+          "Changes Requested": true,
+          "CRITICAL 标注": true
+        }
+      },
+      {
+        "id": "M5_2",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 5,
+        "details": {
+          "R7 教学模式": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码可能超 30 行": false,
+          "C3 反对一次": true
+        }
+      },
+      {
+        "id": "M7_1",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 7,
+        "details": {
+          "HC4 安全团队": true,
+          "HC3 文件 >500": true,
+          "HC6 请求描述": true,
+          "Changes Requested": false,
+          "评论数 ≤ 15": false,
+          "优先级排序": true,
+          "第 3 次可执行": false
+        }
+      },
+      {
+        "id": "M7_2",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 7,
+        "details": {
+          "R7 教学模式覆盖 concise": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码超 30 行要先问": true,
+          "R5 vs R3 → R3 赢": false,
+          "C3 反对一次": false,
+          "不扩展范围 R4": false
+        }
+      },
+      {
+        "id": "M5_N",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "HC4 安全团队": false,
+          "HC3 文件 >500": false,
+          "HC6 请求描述": false,
+          "Changes Requested": false
+        }
+      },
+      {
+        "id": "M7_N",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 3,
+        "total": 4,
+        "details": {
+          "R7 教学模式": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 先问": false
+        }
+      }
+    ]
+  },
+  "adaptive_rc5": {
+    "overall_pct": 66.0,
+    "total_hits": 33,
+    "total_checks": 50,
+    "avg_tokens": 3078,
+    "avg_answer_len": 1080,
+    "pct_per_1k_tokens": 21.4,
+    "by_difficulty": {
+      "1": {
+        "pct": 100.0,
+        "hits": 1,
+        "total": 1
+      },
+      "2": {
+        "pct": 100.0,
+        "hits": 4,
+        "total": 4
+      },
+      "3": {
+        "pct": 83.3,
+        "hits": 5,
+        "total": 6
+      },
+      "4": {
+        "pct": 42.9,
+        "hits": 3,
+        "total": 7
+      },
+      "5": {
+        "pct": 64.3,
+        "hits": 9,
+        "total": 14
+      },
+      "7": {
+        "pct": 61.1,
+        "hits": 11,
+        "total": 18
+      }
+    },
+    "routing_log": [
+      {
+        "id": "S1",
+        "active_rules": 1,
+        "routed_to": "direct",
+        "hits": 1,
+        "total": 1
+      },
+      {
+        "id": "S2",
+        "active_rules": 2,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "S3",
+        "active_rules": 2,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "M3_1",
+        "active_rules": 3,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 3
+      },
+      {
+        "id": "M3_2",
+        "active_rules": 3,
+        "routed_to": "direct",
+        "hits": 3,
+        "total": 3
+      },
+      {
+        "id": "M4_1",
+        "active_rules": 4,
+        "routed_to": "direct",
+        "hits": 0,
+        "total": 3
+      },
+      {
+        "id": "M4_2",
+        "active_rules": 4,
+        "routed_to": "direct",
+        "hits": 3,
+        "total": 4
+      },
+      {
+        "id": "M5_1",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 5,
+        "total": 5
+      },
+      {
+        "id": "M5_2",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 5
+      },
+      {
+        "id": "M7_1",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 7
+      },
+      {
+        "id": "M7_2",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 7
+      },
+      {
+        "id": "M5_N",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 4
+      },
+      {
+        "id": "M7_N",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 3,
+        "total": 4
+      }
+    ],
+    "tests": [
+      {
+        "id": "S1",
+        "difficulty": 1,
+        "strategy_used": "direct",
+        "hits": 1,
+        "total": 1,
+        "details": {
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "S2",
+        "difficulty": 2,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "R8 需要确认": true,
+          "不能因为用户说确定就执行": true
+        }
+      },
+      {
+        "id": "S3",
+        "difficulty": 2,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "style 跳过 (<10行)": true,
+          "verdict Approved": true
+        }
+      },
+      {
+        "id": "M3_1",
+        "difficulty": 3,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 3,
+        "details": {
+          "R7 教学模式触发": false,
+          "R6 production 99.9%": true,
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "M3_2",
+        "difficulty": 3,
+        "strategy_used": "direct",
+        "hits": 3,
+        "total": 3,
+        "details": {
+          "HC4 安全团队": true,
+          "HC5 跳过 generated": true,
+          "HC6 请求描述": true
+        }
+      },
+      {
+        "id": "M4_1",
+        "difficulty": 4,
+        "strategy_used": "direct",
+        "hits": 0,
+        "total": 3,
+        "details": {
+          "R7 教学覆盖 concise": false,
+          "R1 说 failure mode": false,
+          "不能只简短回答": false
+        }
+      },
+      {
+        "id": "M4_2",
+        "difficulty": 4,
+        "strategy_used": "direct",
+        "hits": 3,
+        "total": 4,
+        "details": {
+          "file1: generated 跳过": true,
+          "file2: performance warning": true,
+          "file2: style 可审(≥10行)": false,
+          "verdict": true
+        }
+      },
+      {
+        "id": "M5_1",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 5,
+        "total": 5,
+        "details": {
+          "HC4 安全团队": true,
+          "HC3 文件大小警告": true,
+          "HC6 请求描述": true,
+          "Changes Requested": true,
+          "CRITICAL 标注": true
+        }
+      },
+      {
+        "id": "M5_2",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 5,
+        "details": {
+          "R7 教学模式": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码可能超 30 行": false,
+          "C3 反对一次": true
+        }
+      },
+      {
+        "id": "M7_1",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 7,
+        "details": {
+          "HC4 安全团队": true,
+          "HC3 文件 >500": true,
+          "HC6 请求描述": true,
+          "Changes Requested": false,
+          "评论数 ≤ 15": false,
+          "优先级排序": true,
+          "第 3 次可执行": false
+        }
+      },
+      {
+        "id": "M7_2",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 7,
+        "details": {
+          "R7 教学模式覆盖 concise": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码超 30 行要先问": true,
+          "R5 vs R3 → R3 赢": false,
+          "C3 反对一次": false,
+          "不扩展范围 R4": false
+        }
+      },
+      {
+        "id": "M5_N",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "HC4 安全团队": false,
+          "HC3 文件 >500": false,
+          "HC6 请求描述": false,
+          "Changes Requested": false
+        }
+      },
+      {
+        "id": "M7_N",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 3,
+        "total": 4,
+        "details": {
+          "R7 教学模式": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 先问": false
+        }
+      }
+    ]
+  },
+  "adaptive_conflict": {
+    "overall_pct": 58.0,
+    "total_hits": 29,
+    "total_checks": 50,
+    "avg_tokens": 3335,
+    "avg_answer_len": 1047,
+    "pct_per_1k_tokens": 17.4,
+    "by_difficulty": {
+      "1": {
+        "pct": 100.0,
+        "hits": 1,
+        "total": 1
+      },
+      "2": {
+        "pct": 100.0,
+        "hits": 4,
+        "total": 4
+      },
+      "3": {
+        "pct": 50.0,
+        "hits": 3,
+        "total": 6
+      },
+      "4": {
+        "pct": 71.4,
+        "hits": 5,
+        "total": 7
+      },
+      "5": {
+        "pct": 64.3,
+        "hits": 9,
+        "total": 14
+      },
+      "7": {
+        "pct": 38.9,
+        "hits": 7,
+        "total": 18
+      }
+    },
+    "routing_log": [
+      {
+        "id": "S1",
+        "active_rules": 1,
+        "routed_to": "direct",
+        "hits": 1,
+        "total": 1
+      },
+      {
+        "id": "S2",
+        "active_rules": 2,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "S3",
+        "active_rules": 2,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "M3_1",
+        "active_rules": 3,
+        "routed_to": "checklist",
+        "hits": 3,
+        "total": 3
+      },
+      {
+        "id": "M3_2",
+        "active_rules": 3,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 3
+      },
+      {
+        "id": "M4_1",
+        "active_rules": 4,
+        "routed_to": "checklist",
+        "hits": 2,
+        "total": 3
+      },
+      {
+        "id": "M4_2",
+        "active_rules": 4,
+        "routed_to": "direct",
+        "hits": 3,
+        "total": 4
+      },
+      {
+        "id": "M5_1",
+        "active_rules": 5,
+        "routed_to": "direct",
+        "hits": 5,
+        "total": 5
+      },
+      {
+        "id": "M5_2",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 5
+      },
+      {
+        "id": "M7_1",
+        "active_rules": 7,
+        "routed_to": "direct",
+        "hits": 0,
+        "total": 7
+      },
+      {
+        "id": "M7_2",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 7
+      },
+      {
+        "id": "M5_N",
+        "active_rules": 5,
+        "routed_to": "direct",
+        "hits": 0,
+        "total": 4
+      },
+      {
+        "id": "M7_N",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 3,
+        "total": 4
+      }
+    ],
+    "tests": [
+      {
+        "id": "S1",
+        "difficulty": 1,
+        "strategy_used": "direct",
+        "hits": 1,
+        "total": 1,
+        "details": {
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "S2",
+        "difficulty": 2,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "R8 需要确认": true,
+          "不能因为用户说确定就执行": true
+        }
+      },
+      {
+        "id": "S3",
+        "difficulty": 2,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "style 跳过 (<10行)": true,
+          "verdict Approved": true
+        }
+      },
+      {
+        "id": "M3_1",
+        "difficulty": 3,
+        "strategy_used": "checklist",
+        "hits": 3,
+        "total": 3,
+        "details": {
+          "R7 教学模式触发": true,
+          "R6 production 99.9%": true,
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "M3_2",
+        "difficulty": 3,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 3,
+        "details": {
+          "HC4 安全团队": false,
+          "HC5 跳过 generated": false,
+          "HC6 请求描述": false
+        }
+      },
+      {
+        "id": "M4_1",
+        "difficulty": 4,
+        "strategy_used": "checklist",
+        "hits": 2,
+        "total": 3,
+        "details": {
+          "R7 教学覆盖 concise": true,
+          "R1 说 failure mode": false,
+          "不能只简短回答": true
+        }
+      },
+      {
+        "id": "M4_2",
+        "difficulty": 4,
+        "strategy_used": "direct",
+        "hits": 3,
+        "total": 4,
+        "details": {
+          "file1: generated 跳过": true,
+          "file2: performance warning": true,
+          "file2: style 可审(≥10行)": false,
+          "verdict": true
+        }
+      },
+      {
+        "id": "M5_1",
+        "difficulty": 5,
+        "strategy_used": "direct",
+        "hits": 5,
+        "total": 5,
+        "details": {
+          "HC4 安全团队": true,
+          "HC3 文件大小警告": true,
+          "HC6 请求描述": true,
+          "Changes Requested": true,
+          "CRITICAL 标注": true
+        }
+      },
+      {
+        "id": "M5_2",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 5,
+        "details": {
+          "R7 教学模式": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码可能超 30 行": false,
+          "C3 反对一次": true
+        }
+      },
+      {
+        "id": "M7_1",
+        "difficulty": 7,
+        "strategy_used": "direct",
+        "hits": 0,
+        "total": 7,
+        "details": {
+          "HC4 安全团队": false,
+          "HC3 文件 >500": false,
+          "HC6 请求描述": false,
+          "Changes Requested": false,
+          "评论数 ≤ 15": false,
+          "优先级排序": false,
+          "第 3 次可执行": false
+        }
+      },
+      {
+        "id": "M7_2",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 7,
+        "details": {
+          "R7 教学模式覆盖 concise": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码超 30 行要先问": true,
+          "R5 vs R3 → R3 赢": false,
+          "C3 反对一次": false,
+          "不扩展范围 R4": false
+        }
+      },
+      {
+        "id": "M5_N",
+        "difficulty": 5,
+        "strategy_used": "direct",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "HC4 安全团队": false,
+          "HC3 文件 >500": false,
+          "HC6 请求描述": false,
+          "Changes Requested": false
+        }
+      },
+      {
+        "id": "M7_N",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 3,
+        "total": 4,
+        "details": {
+          "R7 教学模式": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 先问": false
+        }
+      }
+    ]
+  },
+  "adaptive_exception": {
+    "overall_pct": 42.0,
+    "total_hits": 21,
+    "total_checks": 50,
+    "avg_tokens": 2951,
+    "avg_answer_len": 970,
+    "pct_per_1k_tokens": 14.2,
+    "by_difficulty": {
+      "1": {
+        "pct": 100.0,
+        "hits": 1,
+        "total": 1
+      },
+      "2": {
+        "pct": 100.0,
+        "hits": 4,
+        "total": 4
+      },
+      "3": {
+        "pct": 83.3,
+        "hits": 5,
+        "total": 6
+      },
+      "4": {
+        "pct": 0.0,
+        "hits": 0,
+        "total": 7
+      },
+      "5": {
+        "pct": 50.0,
+        "hits": 7,
+        "total": 14
+      },
+      "7": {
+        "pct": 22.2,
+        "hits": 4,
+        "total": 18
+      }
+    },
+    "routing_log": [
+      {
+        "id": "S1",
+        "active_rules": 1,
+        "routed_to": "direct",
+        "hits": 1,
+        "total": 1
+      },
+      {
+        "id": "S2",
+        "active_rules": 2,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "S3",
+        "active_rules": 2,
+        "routed_to": "checklist",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "M3_1",
+        "active_rules": 3,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 3
+      },
+      {
+        "id": "M3_2",
+        "active_rules": 3,
+        "routed_to": "direct",
+        "hits": 3,
+        "total": 3
+      },
+      {
+        "id": "M4_1",
+        "active_rules": 4,
+        "routed_to": "direct",
+        "hits": 0,
+        "total": 3
+      },
+      {
+        "id": "M4_2",
+        "active_rules": 4,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 4
+      },
+      {
+        "id": "M5_1",
+        "active_rules": 5,
+        "routed_to": "direct",
+        "hits": 5,
+        "total": 5
+      },
+      {
+        "id": "M5_2",
+        "active_rules": 5,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 5
+      },
+      {
+        "id": "M7_1",
+        "active_rules": 7,
+        "routed_to": "direct",
+        "hits": 0,
+        "total": 7
+      },
+      {
+        "id": "M7_2",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 7
+      },
+      {
+        "id": "M5_N",
+        "active_rules": 5,
+        "routed_to": "direct",
+        "hits": 0,
+        "total": 4
+      },
+      {
+        "id": "M7_N",
+        "active_rules": 7,
+        "routed_to": "direct",
+        "hits": 0,
+        "total": 4
+      }
+    ],
+    "tests": [
+      {
+        "id": "S1",
+        "difficulty": 1,
+        "strategy_used": "direct",
+        "hits": 1,
+        "total": 1,
+        "details": {
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "S2",
+        "difficulty": 2,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "R8 需要确认": true,
+          "不能因为用户说确定就执行": true
+        }
+      },
+      {
+        "id": "S3",
+        "difficulty": 2,
+        "strategy_used": "checklist",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "style 跳过 (<10行)": true,
+          "verdict Approved": true
+        }
+      },
+      {
+        "id": "M3_1",
+        "difficulty": 3,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 3,
+        "details": {
+          "R7 教学模式触发": false,
+          "R6 production 99.9%": true,
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "M3_2",
+        "difficulty": 3,
+        "strategy_used": "direct",
+        "hits": 3,
+        "total": 3,
+        "details": {
+          "HC4 安全团队": true,
+          "HC5 跳过 generated": true,
+          "HC6 请求描述": true
+        }
+      },
+      {
+        "id": "M4_1",
+        "difficulty": 4,
+        "strategy_used": "direct",
+        "hits": 0,
+        "total": 3,
+        "details": {
+          "R7 教学覆盖 concise": false,
+          "R1 说 failure mode": false,
+          "不能只简短回答": false
+        }
+      },
+      {
+        "id": "M4_2",
+        "difficulty": 4,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "file1: generated 跳过": false,
+          "file2: performance warning": false,
+          "file2: style 可审(≥10行)": false,
+          "verdict": false
+        }
+      },
+      {
+        "id": "M5_1",
+        "difficulty": 5,
+        "strategy_used": "direct",
+        "hits": 5,
+        "total": 5,
+        "details": {
+          "HC4 安全团队": true,
+          "HC3 文件大小警告": true,
+          "HC6 请求描述": true,
+          "Changes Requested": true,
+          "CRITICAL 标注": true
+        }
+      },
+      {
+        "id": "M5_2",
+        "difficulty": 5,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 5,
+        "details": {
+          "R7 教学模式": false,
+          "R6 production": true,
+          "R1 failure mode": false,
+          "R3 代码可能超 30 行": false,
+          "C3 反对一次": true
+        }
+      },
+      {
+        "id": "M7_1",
+        "difficulty": 7,
+        "strategy_used": "direct",
+        "hits": 0,
+        "total": 7,
+        "details": {
+          "HC4 安全团队": false,
+          "HC3 文件 >500": false,
+          "HC6 请求描述": false,
+          "Changes Requested": false,
+          "评论数 ≤ 15": false,
+          "优先级排序": false,
+          "第 3 次可执行": false
+        }
+      },
+      {
+        "id": "M7_2",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 7,
+        "details": {
+          "R7 教学模式覆盖 concise": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码超 30 行要先问": true,
+          "R5 vs R3 → R3 赢": false,
+          "C3 反对一次": false,
+          "不扩展范围 R4": false
+        }
+      },
+      {
+        "id": "M5_N",
+        "difficulty": 5,
+        "strategy_used": "direct",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "HC4 安全团队": false,
+          "HC3 文件 >500": false,
+          "HC6 请求描述": false,
+          "Changes Requested": false
+        }
+      },
+      {
+        "id": "M7_N",
+        "difficulty": 7,
+        "strategy_used": "direct",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "R7 教学模式": false,
+          "R6 production": false,
+          "R1 failure mode": false,
+          "R3 先问": false
+        }
+      }
+    ]
+  },
+  "adaptive_hybrid": {
+    "overall_pct": 60.0,
+    "total_hits": 30,
+    "total_checks": 50,
+    "avg_tokens": 3408,
+    "avg_answer_len": 1236,
+    "pct_per_1k_tokens": 17.6,
+    "by_difficulty": {
+      "1": {
+        "pct": 100.0,
+        "hits": 1,
+        "total": 1
+      },
+      "2": {
+        "pct": 100.0,
+        "hits": 4,
+        "total": 4
+      },
+      "3": {
+        "pct": 50.0,
+        "hits": 3,
+        "total": 6
+      },
+      "4": {
+        "pct": 28.6,
+        "hits": 2,
+        "total": 7
+      },
+      "5": {
+        "pct": 64.3,
+        "hits": 9,
+        "total": 14
+      },
+      "7": {
+        "pct": 61.1,
+        "hits": 11,
+        "total": 18
+      }
+    },
+    "routing_log": [
+      {
+        "id": "S1",
+        "active_rules": 1,
+        "routed_to": "direct",
+        "hits": 1,
+        "total": 1
+      },
+      {
+        "id": "S2",
+        "active_rules": 2,
+        "routed_to": "direct",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "S3",
+        "active_rules": 2,
+        "routed_to": "checklist",
+        "hits": 2,
+        "total": 2
+      },
+      {
+        "id": "M3_1",
+        "active_rules": 3,
+        "routed_to": "checklist",
+        "hits": 3,
+        "total": 3
+      },
+      {
+        "id": "M3_2",
+        "active_rules": 3,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 3
+      },
+      {
+        "id": "M4_1",
+        "active_rules": 4,
+        "routed_to": "checklist",
+        "hits": 2,
+        "total": 3
+      },
+      {
+        "id": "M4_2",
+        "active_rules": 4,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 4
+      },
+      {
+        "id": "M5_1",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 5,
+        "total": 5
+      },
+      {
+        "id": "M5_2",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 5
+      },
+      {
+        "id": "M7_1",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 7
+      },
+      {
+        "id": "M7_2",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 4,
+        "total": 7
+      },
+      {
+        "id": "M5_N",
+        "active_rules": 5,
+        "routed_to": "checklist",
+        "hits": 0,
+        "total": 4
+      },
+      {
+        "id": "M7_N",
+        "active_rules": 7,
+        "routed_to": "checklist",
+        "hits": 3,
+        "total": 4
+      }
+    ],
+    "tests": [
+      {
+        "id": "S1",
+        "difficulty": 1,
+        "strategy_used": "direct",
+        "hits": 1,
+        "total": 1,
+        "details": {
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "S2",
+        "difficulty": 2,
+        "strategy_used": "direct",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "R8 需要确认": true,
+          "不能因为用户说确定就执行": true
+        }
+      },
+      {
+        "id": "S3",
+        "difficulty": 2,
+        "strategy_used": "checklist",
+        "hits": 2,
+        "total": 2,
+        "details": {
+          "style 跳过 (<10行)": true,
+          "verdict Approved": true
+        }
+      },
+      {
+        "id": "M3_1",
+        "difficulty": 3,
+        "strategy_used": "checklist",
+        "hits": 3,
+        "total": 3,
+        "details": {
+          "R7 教学模式触发": true,
+          "R6 production 99.9%": true,
+          "R1 failure mode": true
+        }
+      },
+      {
+        "id": "M3_2",
+        "difficulty": 3,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 3,
+        "details": {
+          "HC4 安全团队": false,
+          "HC5 跳过 generated": false,
+          "HC6 请求描述": false
+        }
+      },
+      {
+        "id": "M4_1",
+        "difficulty": 4,
+        "strategy_used": "checklist",
+        "hits": 2,
+        "total": 3,
+        "details": {
+          "R7 教学覆盖 concise": true,
+          "R1 说 failure mode": false,
+          "不能只简短回答": true
+        }
+      },
+      {
+        "id": "M4_2",
+        "difficulty": 4,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "file1: generated 跳过": false,
+          "file2: performance warning": false,
+          "file2: style 可审(≥10行)": false,
+          "verdict": false
+        }
+      },
+      {
+        "id": "M5_1",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 5,
+        "total": 5,
+        "details": {
+          "HC4 安全团队": true,
+          "HC3 文件大小警告": true,
+          "HC6 请求描述": true,
+          "Changes Requested": true,
+          "CRITICAL 标注": true
+        }
+      },
+      {
+        "id": "M5_2",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 5,
+        "details": {
+          "R7 教学模式": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码可能超 30 行": false,
+          "C3 反对一次": true
+        }
+      },
+      {
+        "id": "M7_1",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 7,
+        "details": {
+          "HC4 安全团队": true,
+          "HC3 文件 >500": true,
+          "HC6 请求描述": true,
+          "Changes Requested": false,
+          "评论数 ≤ 15": false,
+          "优先级排序": true,
+          "第 3 次可执行": false
+        }
+      },
+      {
+        "id": "M7_2",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 4,
+        "total": 7,
+        "details": {
+          "R7 教学模式覆盖 concise": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 代码超 30 行要先问": true,
+          "R5 vs R3 → R3 赢": false,
+          "C3 反对一次": false,
+          "不扩展范围 R4": false
+        }
+      },
+      {
+        "id": "M5_N",
+        "difficulty": 5,
+        "strategy_used": "checklist",
+        "hits": 0,
+        "total": 4,
+        "details": {
+          "HC4 安全团队": false,
+          "HC3 文件 >500": false,
+          "HC6 请求描述": false,
+          "Changes Requested": false
+        }
+      },
+      {
+        "id": "M7_N",
+        "difficulty": 7,
+        "strategy_used": "checklist",
+        "hits": 3,
+        "total": 4,
+        "details": {
+          "R7 教学模式": true,
+          "R6 production": true,
+          "R1 failure mode": true,
+          "R3 先问": false
+        }
+      }
+    ]
+  }
+}
