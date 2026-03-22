@@ -234,4 +234,3 @@ cd experiments/06_robustness && python3 run_experiment.py
 - **Migration validation**: Test the three-layer architecture on different agent types (customer service, data analysis)
 - **Router prototype**: Build `adaptive_rc5` as a callable routing module
 - **Automated rule counting**: Detect `active_rules` from config + user query automatically
-- **Tokenizer research**: Investigate alternatives to subword tokenization for agent instruction processing (Direction 2 from original project scope)
